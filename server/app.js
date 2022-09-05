@@ -4,9 +4,13 @@ const app=express()
 //requerimiento de cors y morgan
 const cors = require('cors')
 const morgan = require('morgan')
+//rutas
 const userRuta = require('../routes/userRoutes')
-
-
+const medicoRuta = require('../routes/medicoRoutes') 
+const pacienteRuta = require('../routes/pacienteRoutes')
+const horarioRuta = require('../routes/horioRoutes')
+const consultaRuta = require('../routes/consutaRoutes')
+const HistorialRuta = require('../routes/historialRoutes')
 
 //configuracion dotenv
 require('dotenv/config')
@@ -28,7 +32,11 @@ app.get('/', (req,res)=>{
 
 //uso de las rutas
 app.use('/users',userRuta)
-
+app.use('/medico',medicoRuta)
+app.use('/pac',pacienteRuta)
+app.use('/horario',horarioRuta)
+app.use('/consulta',consultaRuta) 
+app.use('/historial',HistorialRuta)
 //escucha del puerto 8080
 app.listen(port,()=>{
     console.log("estamos escuchando el puerto",port)
