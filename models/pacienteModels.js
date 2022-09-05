@@ -18,10 +18,6 @@ const PacienteSchema = new Schema(
         required:true},
         telefono:{
             type:Number
-        },
-        num_HC:{
-            type:Schema.ObjectId,
-            ref:'historial'
         }
     }
 )
