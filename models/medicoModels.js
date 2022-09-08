@@ -9,10 +9,14 @@ const MedicoSchema= new Schema(
             type: String,
             required: true,
           },
-          horario: {
-            type: Array(Schema.ObjectId),
+         /*  horario: {
+            type: Schema.ObjectId,
            ref:'horario'
-          }  
+          }  */ 
+          horario:{
+            type:Array,
+            required:true
+          }
     }
 )
 module.exports= model ('Medico',MedicoSchema)

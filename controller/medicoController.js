@@ -4,15 +4,15 @@ const Medico= require('../models/medicoModels')
 //get all
 const ObtenerMedicos= async(req,res)=>{
     try{
-        await Medico.find()
-        .populate({path:'horario',model:'horario'}).exec((err,medico)=>{
+       const medico= await Medico.find()
+        /* .populate({path:'horario',model:'horario'}).exec((err,medico)=>{
              if(err){
              console.log(err);
              process.exit(-1);
-             }
+             } */
              res.status(201).json(medico)
-         }  
-         )
+        /*  }  
+         ) */
      }catch(error){
          res.status(404).json(error)
      }
@@ -54,14 +54,14 @@ const modificarMedico=async(req,res)=>{
 }
 
 //delete
-const borrarMedico=async(req,res)=>{
-    const {id } = req.params
-    const getById = await Medico.findByIdAndDelete(id)
-    if(getById !== null){
-        res.status(200).json("Se elimino ")
-    }else{
-        res.status(404).json("Algo salio mal y no se pudo eliminar ")
+const borrarMed= async(req,res)=>{
+    const {id} = req.params 
+    console.log(id)
+    const getIdMedico= await Medico.findByIdAndDelete(id)
+    if (getIdMedico!==null) {
+        res.status(201).json({msg:'exito al borrar'})        
+    } else {
+        res.status(404).json({msg:'Error al borrar medico'})
     }
 }
-
-module.exports={ObtenerMedicos,ObtenerUnMedico,CrearMedico,modificarMedico,borrarMedico}
+module.exports={ObtenerMedicos,ObtenerUnMedico,CrearMedico,modificarMedico,borrarMed}

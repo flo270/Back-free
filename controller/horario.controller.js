@@ -22,10 +22,11 @@ const obtenerUnHorario= async(req,res)=>{
 }
 //post
 const CrearHorario= async(req,res)=>{
-    const {dias,horario}=req.body
+    const {dias_hora,medico}=req.body
     try {
        const horario1 = new Horario({
-        dias,horario
+        dias_hora,
+        medico
        }) 
        const newHorario = await horario1.save()
        res.status(201).json({msg:'nuevo Horario creado con exito',newHorario})
@@ -36,9 +37,9 @@ const CrearHorario= async(req,res)=>{
 //put
 const modificarHorario=async(req,res)=>{
     const {id} = req.params
-    const {dias,horario}=req.body
+    const {dias_hora,medico}=req.body
     const getIdUpdate =await Horario.findByIdAndUpdate(id,
-        {dias,horario})
+        {dias_hora,medico})
     if (getIdUpdate !== null) {
         res.status(201).json({msg:'exito en la modificacion de Horario'})
     } else {
