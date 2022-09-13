@@ -20,7 +20,7 @@ const userSchema= new Schema(
           } ,
           banned: {
             type: Boolean
-          }, 
+          }
     }
 )
 module.exports= model ('Users',userSchema)

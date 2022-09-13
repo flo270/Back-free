@@ -8,9 +8,10 @@ const morgan = require('morgan')
 const userRuta = require('../routes/userRoutes')
 const medicoRuta = require('../routes/medicoRoutes') 
 const pacienteRuta = require('../routes/pacienteRoutes')
-const horarioRuta = require('../routes/horioRoutes')
 const consultaRuta = require('../routes/consutaRoutes')
 const HistorialRuta = require('../routes/historialRoutes')
+const ImgRuta = require('../routes/imagenRoute')
+const InfoRuta = require('../routes/InfoRoutes')
 
 //configuracion dotenv
 require('dotenv/config')
@@ -34,9 +35,11 @@ app.get('/', (req,res)=>{
 app.use('/users',userRuta)
 app.use('/medico',medicoRuta)
 app.use('/pac',pacienteRuta)
-app.use('/horario',horarioRuta)
+
 app.use('/consulta',consultaRuta) 
 app.use('/historial',HistorialRuta)
+app.use('/imagenes',ImgRuta)
+app.use('/info',InfoRuta)
 //escucha del puerto 8080
 app.listen(port,()=>{
     console.log("estamos escuchando el puerto",port)

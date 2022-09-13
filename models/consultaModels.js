@@ -21,6 +21,13 @@ const ConsultaSchema = new Schema(
         estudios:{
             type:String,
             required: true
+        }, 
+        resultadoEst:{
+            type:String
+        },
+        medico:{
+            type:Schema.ObjectId,
+            ref: 'Medico'
         }
        
     }

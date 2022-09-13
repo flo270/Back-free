@@ -16,7 +16,11 @@ const MedicoSchema= new Schema(
           horario:{
             type:Array,
             required:true
-          }
+          },
+          fav: {
+            type: Boolean,
+            required: false,
+          },
     }
 )
 module.exports= model ('Medico',MedicoSchema)

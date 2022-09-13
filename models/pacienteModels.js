@@ -18,6 +18,10 @@ const PacienteSchema = new Schema(
         required:true},
         telefono:{
             type:Number
+        },
+        num_hc:{
+            type:String,
+            required:true
         }
     }
 )

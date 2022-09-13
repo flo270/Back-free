@@ -5,10 +5,10 @@ const HorarioSchema= new Schema(
             type: String,
             required: true,
           },  
-        medico:{
+        /* medico:{
             type:Schema.ObjectId,
             ref:'Medico'
-        }         
+        }  */        
     }
 )
 module.exports= model ('horario',HorarioSchema)

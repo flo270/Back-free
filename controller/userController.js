@@ -110,7 +110,8 @@ const deleteUser = async (req, res) => {
         .status(404)
         .json({ msg: "Hubo un error", error })
     }
-  }
+  } 
+  
 //exportacion del modulo
 module.exports={getUsers,getUserById,createUser,loginUser,deleteUser,modifyUser}
 

@@ -22,11 +22,11 @@ const obtenerUnPaciente= async(req,res)=>{
 }
 //post
 const CrearPaciente= async(req,res)=>{
-    const {nombre,apellido,fecha_nacimiento,dni,sexo,telefono}=req.body
+    const {nombre,apellido,fecha_nacimiento,dni,sexo,telefono,num_hc}=req.body
     console.log(req.body)
     try {
        const paciente = new Paciente({
-        nombre,apellido,fecha_nacimiento,dni,sexo,telefono
+        nombre,apellido,fecha_nacimiento,dni,sexo,telefono,num_hc
        }) 
        const newPaciente = await paciente.save()
        res.status(201).json({msg:'nuevo paciente creado con exito',newPaciente})
@@ -38,9 +38,9 @@ const CrearPaciente= async(req,res)=>{
 //put
 const modificarPaciente=async(req,res)=>{
     const {id} = req.params
-    const {nombre,apellido,fecha_nacimiento,dni,sexo,telefono}=req.body
+    const {nombre,apellido,fecha_nacimiento,dni,sexo,telefono,num_hc}=req.body
     const getIdUpdate =await Paciente.findByIdAndUpdate(id,
-        {nombre,apellido,fecha_nacimiento,dni,sexo,telefono})
+        {nombre,apellido,fecha_nacimiento,dni,sexo,telefono,num_hc})
     if (getIdUpdate !== null) {
         res.status(201).json({msg:'exito en la modificacion de paciente'})
     } else {

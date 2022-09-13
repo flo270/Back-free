@@ -5,7 +5,9 @@ const Consulta = require('../models/consultaModels')
 const ObtenerConsultas= async(req,res)=>{
     try{
         await Consulta.find()
-        .populate({path:'paciente',model:'paciente'}).exec((err,Consulta)=>{
+        .populate({path:'paciente',model:'paciente'})
+        .populate({path:'medico',model:'Medico'})
+        .exec((err,Consulta)=>{
              if(err){
              console.log(err);
              process.exit(-1);
@@ -29,10 +31,10 @@ const ObtenerUnConsulta = async(req,res)=>{
 }
 //post
 const CrearConsulta =async(req,res)=>{
-    const {paciente,fecha_consulta,sintomas,diagnostico,tratamiento,estudios}=req.body
+    const {paciente,fecha_consulta,sintomas,diagnostico,tratamiento,estudios,resultadoEst,medico}=req.body
     try {
      const consulta = new Consulta({
-        paciente,fecha_consulta,sintomas,diagnostico,tratamiento,estudios
+        paciente,fecha_consulta,sintomas,diagnostico,tratamiento,estudios,resultadoEst,medico
      })   
      const newConsulta = await consulta.save()
      res.status(201).json({msg:'nuevo Consulta creado',newConsulta})
@@ -43,8 +45,8 @@ const CrearConsulta =async(req,res)=>{
 //put
 const modificarConsulta=async(req,res)=>{
     const {id} = req.params 
-    const{ paciente,fecha_consulta,sintomas,diagnostico,tratamiento,estudios}= req.body  
-    const getIdUpdate = await Consulta.findByIdAndUpdate(id,{ paciente,fecha_consulta,sintomas,diagnostico,tratamiento,estudios})
+    const{ paciente,fecha_consulta,sintomas,diagnostico,tratamiento,estudios,resultadoEst,medico}= req.body  
+    const getIdUpdate = await Consulta.findByIdAndUpdate(id,{ paciente,fecha_consulta,sintomas,diagnostico,tratamiento,estudios,resultadoEst,medico})
     if (getIdUpdate !== null) {
         res.status(200).json('exito al modificar')
         console.log(req.body)
