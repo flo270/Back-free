@@ -1,7 +1,7 @@
 //requerir router de express
 const {Router} = require('express')
 //requerir el controlador
-const {obtenerInfoes,crearInfo,borrarInfo,modificarInfo} = require('../controller/infoController')
+const {obtenerInfoes,crearInfo,borrarInfo,modificarInfo,ObtenerInfoOne} = require('../controller/infoController')
 //crear ruta
 const InfoRuta= Router()
 //usar ruta
@@ -10,5 +10,6 @@ InfoRuta
         .post('/crear',crearInfo)
         .delete('/:id',borrarInfo)
         .put('/:id',modificarInfo)
+        .get('/:id',ObtenerInfoOne)
 
         module.exports = InfoRuta

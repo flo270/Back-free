@@ -10,6 +10,16 @@ const obtenerInfoes= async (req,res)=>{
         res.status(404).json({msg:'Error al acceder a Infoes'})
     }
 }
+//get one
+const ObtenerInfoOne = async(req,res)=>{
+    const {id} = req.params  
+   const getId = await Info.findById(id)
+   if (getId!== null) {
+       res.status(200).json({msg:'exito en la consulta',getId})
+   } else {
+       res.status(404).json("Algo salio mal y no se pudo realizar la busqueda")
+   } 
+}
 //post
 const crearInfo = async(req,res)=>{
     const {titulo,cuerpo,fav}=req.body
@@ -28,7 +38,7 @@ const crearInfo = async(req,res)=>{
 const modificarInfo=async(req,res)=>{
     const {id} = req.params 
     const{titulo,cuerpo,fav}= req.body  
-    const getIdUpdate = await Info.findByIdAndUpdate(id,{titulo,fav})
+    const getIdUpdate = await Info.findByIdAndUpdate(id,{titulo,cuerpo,fav})
     if (getIdUpdate !== null) {
         res.status(200).json('exito al modificar')
         console.log(req.body)
@@ -46,4 +56,4 @@ const borrarInfo = async(req,res)=>{
         res.status(404).json({msg:'Error al borrar'})
     }
 }
-module.exports= {obtenerInfoes,crearInfo,borrarInfo,modificarInfo}
+module.exports= {obtenerInfoes,crearInfo,borrarInfo,modificarInfo,ObtenerInfoOne}
